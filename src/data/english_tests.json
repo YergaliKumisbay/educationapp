@@ -1,0 +1,18 @@
+{
+  "subject": "Ағылшын тілі",
+  "subjectId": 3,
+  "questions": [
+    {
+      "questionId": 301,
+      "question": "Which of the following is a synonym for 'happy'?",
+      "options": ["Sad", "Joyful", "Angry", "Tired"],
+      "answer": "Joyful"
+    },
+    {
+      "questionId": 302,
+      "question": "Choose the correct past form of 'go'.",
+      "options": ["Goes", "Gone", "Went", "Going"],
+      "answer": "Went"
+    }
+  ]
+}
