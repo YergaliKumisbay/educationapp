@@ -3,14 +3,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #3b8844;
+    background-color: #102d4e;
     border-bottom: 1px solid #ddd;
-}
-
-.logo {
-    font-weight: bold;
-    text-decoration: none;
-    color: black;
 }
 
 .logo img {

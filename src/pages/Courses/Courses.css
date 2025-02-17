@@ -4,18 +4,22 @@
 }
 
 .courses-grid {
-    display: grid;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    text-align: center;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    gap: 20px;
     justify-content: center;
 }
 
 .course-card {
+    box-shadow: 0 4px 40px rgba(0, 0, 0, .1);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
     background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
 }
 
 .course-card:hover {
@@ -29,7 +33,7 @@
 }
 
 .course-badge {
-    background: #28a745;
+    background: #102d4e;
     color: white;
     padding: 5px 10px;
     border-radius: 20px;
@@ -44,7 +48,7 @@
 
 .course-body h3 {
     margin: 5px 0;
-    color: #3b8844;
+    color: #102d4e;
 }
 
 .course-body p {
@@ -54,6 +58,7 @@
 
 .course-footer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
@@ -62,7 +67,7 @@
 }
 
 .enroll-btn {
-    background: #3b8844;
+    background: #102d4e;
     color: white;
     border: none;
     padding: 8px 12px;
@@ -71,7 +76,7 @@
 }
 
 .enroll-btn:hover {
-    background: #216a29;
+    background: #1a4c85;
 }
 
 .back-btn {
@@ -80,12 +85,12 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #3b8844;
+    background-color: #102d4e;
     color: white;
 }
 
 .back-btn:hover {
-    background-color: #216a29;
+    background-color: #1a4c85;
 }
 
 .course-image {
@@ -107,7 +112,7 @@
 }
 
 .lesson a {
-    color: #3b8844;
+    color: #102d4e;
     text-decoration: none;
 }
 

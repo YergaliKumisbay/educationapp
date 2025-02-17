@@ -4,6 +4,8 @@ import Button from "../../components/Button/Button";
 import "./Login.css";
 
 const Login = ({ onLogin }) => {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [isRegistering, setIsRegistering] = useState(false);
@@ -13,9 +15,12 @@ const Login = ({ onLogin }) => {
         const formattedPhone = phone.replace(/\D/g, "");
 
         if (isRegistering) {
+            // Сохранение данных в LocalStorage при регистрации
+            localStorage.setItem("userFirstName", firstName);
+            localStorage.setItem("userLastName", lastName);
             localStorage.setItem("userPhone", formattedPhone);
             localStorage.setItem("userPassword", password);
-            alert("Регистрация успешна! Теперь войдите.");
+            alert("Регистрация успешна! Теперь войдите в систему.");
             setIsRegistering(false);
         } else {
             const storedPhone = localStorage.getItem("userPhone");
@@ -34,6 +39,26 @@ const Login = ({ onLogin }) => {
         <div className="login-container">
             <h2>{isRegistering ? "Регистрация" : "Вход"}</h2>
             <form onSubmit={handleAuth}>
+                {isRegistering && (
+                    <>
+                        <input
+                            type="text"
+                            placeholder="Имя"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            required
+                            className="input"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Фамилия"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            required
+                            className="input"
+                        />
+                    </>
+                )}
                 <InputMask
                     mask="+7(999)-999-99-99"
                     value={phone}
