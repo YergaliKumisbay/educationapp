@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
@@ -7,6 +7,7 @@ import MyCourses from "./pages/Courses/MyCourses";
 import AllCourses from "./pages/Courses/AllCourses";
 import MyCourseDetail from "./pages/Courses/MyCourseDetail";
 import TopicDetail from "./pages/Courses/TopicDetail";
+import Profile from "./pages/Profile/Profile";
 
 
 const App = () => {
@@ -33,9 +34,9 @@ const App = () => {
                 {isAuthenticated ? (
                     <Route path="/" element={<Layout />}>
                         <Route index element={<Home />} />
+                        <Route path="profile" element={<Profile />} /> {/* <-- Новый маршрут */}
                         <Route path="my-courses" element={<MyCourses />} />
                         <Route path="my-courses/:courseId" element={<MyCourseDetail />} />
-                        {/* Новый маршрут для темы */}
                         <Route path="my-courses/:courseId/topics/:topicId" element={<TopicDetail />} />
                         <Route path="all-courses" element={<AllCourses />} />
                     </Route>

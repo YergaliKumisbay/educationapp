@@ -1,28 +1,102 @@
+/* Основной контейнер хедера */
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 10px 20px;
-    background-color: #102d4e;
+    background-color: #f8fafd; /* Светлый фон */
     border-bottom: 1px solid #ddd;
+    font-family: Arial, sans-serif;
 }
 
-.logo img {
+/* Логотип */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
     height: 40px;
     width: auto;
 }
 
-.nav {
+/* Навигация */
+.header-nav {
     display: flex;
-    gap: 15px;
+    align-items: center;
+    gap: 20px;
 }
 
 .nav-item {
-    cursor: pointer;
-    color: #ffffff;
+    color: #000000;
     text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .nav-item:hover {
-    text-decoration: underline;
+    color: #1a3d7c;
+}
+
+/* Инструменты пользователя */
+.header-tools {
+    position: relative; /* Нужно для абсолютного позиционирования меню */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer; /* Указатель при наведении */
+    user-select: none; /* Не выделять текст при клике */
+}
+
+/* Профиль пользователя */
+.profile-dropdown {
+    display: flex;
+    align-items: center;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ddd; /* Серый фон, если нет изображения */
+    object-fit: cover;
+}
+
+/* Выпадающее меню */
+.profile-menu {
+    position: absolute;
+    top: 60px; /* Отступ от хедера */
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    z-index: 999; /* Чтобы меню было поверх всего */
+}
+
+.menu-item {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+    background-color: #f2f2f2;
+}
+
+.logout {
+    cursor: pointer;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .header-nav {
+        display: none; /* Скрываем навигацию на маленьких экранах при необходимости */
+    }
 }

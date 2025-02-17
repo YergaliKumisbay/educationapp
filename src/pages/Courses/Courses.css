@@ -18,8 +18,9 @@
     width: 300px;
     display: flex;
     flex-direction: column;
-    border-radius: 8px;
+    border-radius: 10px;
     background: #fff;
+    cursor: pointer;
 }
 
 .course-card:hover {
@@ -30,6 +31,7 @@
     background: #f8f9fa;
     padding: 10px;
     text-align: left;
+    padding-bottom: 20px;
 }
 
 .course-badge {
@@ -41,7 +43,7 @@
 }
 
 .course-body {
-    padding: 15px;
+    padding: 15px 15px 30px 15px;
     text-align: left;
 
 }
