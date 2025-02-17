@@ -7,12 +7,3 @@
     color: white;
     font-size: 14px;
 }
-
-.footer-item {
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.footer-item:hover {
-    text-decoration: underline;
-}

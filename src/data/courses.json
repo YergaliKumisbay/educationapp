@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "Математика",
+    "price": 0,
+    "isMyCourse": true,
+    "image": "https://static.detivgorode.ua/files/blog/6767_ru.jpg",
+    "description": "Математика курсы: алгебра, геометрия, есептер шығару.",
+    "content": [
+      {
+        "id": 101,
+        "title": "Алгебра",
+        "lessons": [
+          { "id": 1011, "title": "Линейные уравнения", "videoUrl": "https://youtu.be/HGrZ5CcQeUE" },
+          { "id": 1012, "title": "Квадратные уравнения", "videoUrl": "https://example.com/math2" }
+        ]
+      },
+      {
+        "id": 102,
+        "title": "Геометрия",
+        "lessons": [
+          { "id": 1021, "title": "Треугольники", "videoUrl": "https://example.com/geometry1" },
+          { "id": 1022, "title": "Окружности", "videoUrl": "https://example.com/geometry2" }
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": 1001,
+        "question": "2x + 3 = 7, чему равно x?",
+        "options": ["x = 1", "x = 2", "x = 3", "x = 4"],
+        "answer": "x = 2"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Сандық сипаттамалар",
+    "price": 0,
+    "isMyCourse": false,
+    "image": "https://static.detivgorode.ua/files/blog/6767_ru.jpg",
+    "description": "Статистика негіздері: орта мән, мода, медиана.",
+    "content": [
+      {
+        "id": 201,
+        "title": "Негізгі ұғымдар",
+        "lessons": [
+          { "id": 2011, "title": "Орта мән", "videoUrl": "https://example.com/stats1" },
+          { "id": 2012, "title": "Медиана мен мода", "videoUrl": "https://example.com/stats2" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Жаратылыстану",
+    "price": 0,
+    "isMyCourse": true,
+    "image": "https://static.detivgorode.ua/files/blog/6767_ru.jpg",
+    "description": "Физика, химия және биология негіздері.",
+    "content": [
+      {
+        "id": 301,
+        "title": "Физика",
+        "lessons": [
+          { "id": 3011, "title": "Ньютон заңдары", "videoUrl": "https://example.com/physics1" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Орыс тілі",
+    "price": 0,
+    "isMyCourse": true,
+    "image": "https://static.detivgorode.ua/files/blog/6767_ru.jpg",
+    "description": "Орыс тілі грамматикасы мен сөйлеу дағдылары.",
+    "content": [
+      {
+        "id": 401,
+        "title": "Грамматика",
+        "lessons": [
+          { "id": 4011, "title": "Септік жалғаулар", "videoUrl": "https://example.com/russian1" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Қазақ тілі",
+    "price": 0,
+    "isMyCourse": true,
+    "image": "https://sabaqtar.kz/wp-content/uploads/2022/12/%D2%9A%D0%B0%D0%B7%D0%B0%D2%9B-%D1%82%D1%96%D0%BB%D1%96-%D0%BF%D3%99%D0%BD%D1%96%D0%BD%D0%B5%D0%BD-%D1%82%D0%B5%D1%81%D1%82-%D1%81%D2%B1%D1%80%D0%B0%D2%9B%D1%82%D0%B0%D1%80%D1%8B-11-%D1%81%D1%8B%D0%BD%D1%8B%D0%BF.jpg",
+    "description": "Қазақ тілін үйрену курсы.",
+    "content": [
+      {
+        "id": 501,
+        "title": "Лексика",
+        "lessons": [
+          { "id": 5011, "title": "Сөз тіркестері", "videoUrl": "https://example.com/kazakh1" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Ағылшын тілі",
+    "price": 0,
+    "isMyCourse": false,
+    "image": "https://static.detivgorode.ua/files/blog/6767_ru.jpg",
+    "description": "Ағылшын тілін үйрену курсы: грамматика және сөйлеу.",
+    "content": [
+      {
+        "id": 601,
+        "title": "Грамматика",
+        "lessons": [
+          { "id": 6011, "title": "Present Simple", "videoUrl": "https://example.com/english1" }
+        ]
+      }
+    ]
+  }
+]
