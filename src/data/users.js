@@ -25,5 +25,4 @@ export const mockUsers = [
         password: "password",
         role: "student"
     }
-    // ...другие пользователи
 ];

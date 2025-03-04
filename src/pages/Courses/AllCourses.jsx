@@ -15,8 +15,8 @@ const AllCourses = () => {
         <div className="courses-container">
             <h2>Все курсы</h2>
             <div className="courses-grid">
-                {allCourses.map(course => (
-                    <div className="course-card">
+                {allCourses.map((course) => (
+                    <div key={course.id} className="course-card">
                         <img src={course.image} alt={course.title} className="course-image" />
                         <div className="course-body">
                             <h3>{course.title}</h3>
