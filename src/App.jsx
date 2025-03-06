@@ -1,78 +1,120 @@
 // App.jsx
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import MyCourses from "./pages/Courses/MyCourses";
 import AllCourses from "./pages/Courses/AllCourses";
+import MyCourseDetail from "./pages/Courses/MyCourseDetail";
+import Profile from "./pages/Profile/Profile";
 import { mockUsers } from "./data/users";
 
-const App = () => {
+const AppContent = () => {
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
+    const navigate = useNavigate();
 
+    // Инициализация данных
     useEffect(() => {
-        // Проверяем, есть ли уже данные в localStorage
         const storedUsers = localStorage.getItem("users");
+        const storedCurrentUser = localStorage.getItem("currentUser");
+
         if (storedUsers) {
             setUsers(JSON.parse(storedUsers));
         } else {
-            // Если нет, записываем туда наши мок-данные
-            localStorage.setItem("users", JSON.stringify(mockUsers));
+            const initialUsers = JSON.stringify(mockUsers);
+            localStorage.setItem("users", initialUsers);
             setUsers(mockUsers);
         }
 
-        // Пытаемся получить "currentUser" из localStorage,
-        // если хотите сохранять авторизацию между перезагрузками
-        const storedCurrentUser = localStorage.getItem("currentUser");
         if (storedCurrentUser) {
             setCurrentUser(JSON.parse(storedCurrentUser));
         }
     }, []);
 
+    // Автоматическая навигация при изменении статуса авторизации
+    useEffect(() => {
+        if (!currentUser) {
+            navigate("/login", { replace: true });
+        } else {
+            navigate("/", { replace: true });
+        }
+    }, [currentUser, navigate]);
+
+    // Обработчик входа
     const handleLogin = (phone, password) => {
-        const foundUser = users.find(
-            (u) => u.phone.replace(/\D/g, "") === phone && u.password === password
+        const foundUser = users.find(u =>
+            u.phone === phone &&
+            u.password === password
         );
+
         if (foundUser) {
             setCurrentUser(foundUser);
-            // Сохраняем текущего пользователя, чтобы он оставался авторизованным
             localStorage.setItem("currentUser", JSON.stringify(foundUser));
         } else {
             alert("Неверный телефон или пароль!");
+            navigate("/login", { replace: true });
         }
     };
 
+    // Обработчик регистрации
     const handleRegister = (newUser) => {
-        const newUserWithId = { ...newUser, id: Date.now() };
-        const updatedUsers = [...users, newUserWithId];
+        const updatedUsers = [...users, newUser];
         setUsers(updatedUsers);
         localStorage.setItem("users", JSON.stringify(updatedUsers));
+        setCurrentUser(newUser);
+        localStorage.setItem("currentUser", JSON.stringify(newUser));
+        navigate("/", { replace: true });
     };
 
     return (
+        <Routes>
+            <Route
+                path="/login"
+                element={
+                    currentUser ? (
+                        <Navigate to="/" replace />
+                    ) : (
+                        <Login
+                            onLogin={handleLogin}
+                            onRegister={handleRegister}
+                        />
+                    )
+                }
+            />
+
+            <Route
+                path="/"
+                element={
+                    currentUser ? (
+                        <Layout currentUser={currentUser} />
+                    ) : (
+                        <Navigate to="/login" replace />
+                    )
+                }
+            >
+                <Route index element={<Home />} />
+                <Route path="my-courses" element={<MyCourses />} />
+                <Route path="my-courses/:courseId" element={<MyCourseDetail />} />
+                <Route path="all-courses" element={<AllCourses />} />
+                <Route path="profile" element={<Profile />} />
+            </Route>
+
+            <Route
+                path="*"
+                element={<Navigate to={currentUser ? "/" : "/login"} replace />}
+            />
+        </Routes>
+    );
+};
+
+const App = () => {
+    return (
         <Router>
-            <Routes>
-                {currentUser ? (
-                    // Если пользователь авторизован, отображаем Layout и вложенные маршруты
-                    <Route path="/" element={<Layout currentUser={currentUser} />}>
-                        <Route index element={<Home />} />
-                        <Route path="my-courses" element={<MyCourses />} />
-                        <Route path="all-courses" element={<AllCourses />} />
-                        {/* Добавляйте другие маршруты при необходимости */}
-                    </Route>
-                ) : (
-                    // Если пользователь не авторизован, переходим на Login
-                    <Route
-                        path="*"
-                        element={<Login onLogin={handleLogin} onRegister={handleRegister} />}
-                    />
-                )}
-            </Routes>
+            <AppContent />
         </Router>
     );
 };
 
 export default App;
-

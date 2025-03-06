@@ -1,86 +1,95 @@
 import React, { useState } from "react";
-import InputMask from "react-input-mask";
-import Button from "../Button/Button";
+import { ROLES } from "../../../data/users";
 import "./RegisterModal.css";
 
-const RegisterModal = ({ isOpen, onClose }) => {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [phone, setPhone] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+const RegisterModal = ({ isOpen, onClose, onRegister }) => {
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        password: "",
+        confirmPassword: "",
+        role: ROLES.STUDENT
+    });
+    const [error, setError] = useState("");
 
-// Пример в RegisterModal при регистрации:
-    const handleRegister = (e) => {
-        e.preventDefault();
-        if (password !== confirmPassword) {
-            alert("Пароли не совпадают!");
-            return;
-        }
-        const formattedPhone = phone.replace(/\D/g, "");
-        const newUser = {
-            firstName,
-            lastName,
-            phone: formattedPhone,
-            password,
-        };
-        // Передаём нового пользователя в родительский компонент
-        onRegister(newUser);
-        onClose();
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-
-
-    if (!isOpen) return null; // Если модалка закрыта, не рендерим её
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (formData.password !== formData.confirmPassword) {
+            setError("Пароли не совпадают!");
+            return;
+        }
+        setError("");
+        onRegister({
+            ...formData,
+            phone: formData.phone.replace(/\D/g, ""),
+            id: Date.now()
+        });
+        onClose();
+    };
 
     return (
         <div className="modal-overlay">
             <div className="modal">
                 <h2>Регистрация</h2>
-                <form onSubmit={handleRegister}>
+                {error && <div className="error">{error}</div>}
+                <form onSubmit={handleSubmit}>
                     <input
+                        name="firstName"
                         type="text"
                         placeholder="Имя"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
+                        value={formData.firstName}
+                        onChange={handleChange}
                         required
-                        className="input"
                     />
                     <input
+                        name="lastName"
                         type="text"
                         placeholder="Фамилия"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
+                        value={formData.lastName}
+                        onChange={handleChange}
                         required
-                        className="input"
-                    />
-                    <InputMask
-                        mask="+7(999)-999-99-99"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        placeholder="Номер телефона"
-                        required
-                        className="input"
                     />
                     <input
+                        name="phone"
+                        type="tel"
+                        placeholder="Номер телефона"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        name="password"
                         type="password"
                         placeholder="Пароль"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={formData.password}
+                        onChange={handleChange}
                         required
-                        className="input"
                     />
                     <input
+                        name="confirmPassword"
                         type="password"
                         placeholder="Подтвердите пароль"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
                         required
-                        className="input"
                     />
-                    <Button text="Зарегистрироваться" type="submit" />
+                    <select
+                        name="role"
+                        value={formData.role}
+                        onChange={handleChange}
+                        className="role-select"
+                    >
+                        <option value={ROLES.STUDENT}>Студент</option>
+                        <option value={ROLES.TEACHER}>Преподаватель</option>
+                    </select>
+                    <button type="submit">Зарегистрироваться</button>
                 </form>
-                <button className="close-btn" onClick={onClose}>Закрыть</button>
+                <button onClick={onClose}>Закрыть</button>
             </div>
         </div>
     );

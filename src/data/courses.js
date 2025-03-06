@@ -1,0 +1,168 @@
+// src/data/courses.js
+
+const courses = [
+    {
+        id: 1,
+        title: "Математика",
+        price: 0,
+        isMyCourse: true,
+        image:
+            "https://firebasestorage.googleapis.com/v0/b/ozatonline/o/uploads%2Fimages%2Fcourses%2F12.jpg?alt=media",
+        description: "Математика курсы: алгебра, геометрия, есептер шығару.",
+        content: [
+            {
+                id: 101,
+                title: "Алгебра",
+                lessons: [
+                    {
+                        id: 1011,
+                        title: "Линейные уравнения",
+                        videoUrl: "https://youtu.be/HGrZ5CcQeUE",
+                    },
+                    {
+                        id: 1012,
+                        title: "Квадратные уравнения",
+                        videoUrl: "https://example.com/math2",
+                    },
+                ],
+            },
+            {
+                id: 102,
+                title: "Геометрия",
+                lessons: [
+                    {
+                        id: 1021,
+                        title: "Треугольники",
+                        videoUrl: "https://example.com/geometry1",
+                    },
+                    {
+                        id: 1022,
+                        title: "Окружности",
+                        videoUrl: "https://example.com/geometry2",
+                    },
+                ],
+            },
+        ],
+        questions: [
+            {
+                id: 1001,
+                question: "2x + 3 = 7, чему равно x?",
+                options: ["x = 1", "x = 2", "x = 3", "x = 4"],
+                answer: "x = 2",
+            },
+        ],
+    },
+    {
+        id: 2,
+        title: "Сандық сипаттамалар",
+        price: 1000,
+        isMyCourse: false,
+        image:
+            "https://firebasestorage.googleapis.com/v0/b/ozatonline/o/uploads%2Fimages%2Fcourses%2F12.jpg?alt=media",
+        description: "Статистика негіздері: орта мән, мода, медиана.",
+        content: [
+            {
+                id: 201,
+                title: "Негізгі ұғымдар",
+                lessons: [
+                    { id: 2011, title: "Орта мән", videoUrl: "https://example.com/stats1" },
+                    {
+                        id: 2012,
+                        title: "Медиана мен мода",
+                        videoUrl: "https://example.com/stats2",
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        id: 3,
+        title: "Жаратылыстану",
+        price: 1000,
+        isMyCourse: true,
+        image:
+            "https://firebasestorage.googleapis.com/v0/b/ozatonline/o/uploads%2Fimages%2Fcourses%2F12.jpg?alt=media",
+        description: "Физика, химия және биология негіздері.",
+        content: [
+            {
+                id: 301,
+                title: "Физика",
+                lessons: [
+                    {
+                        id: 3011,
+                        title: "Ньютон заңдары",
+                        videoUrl: "https://example.com/physics1",
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        id: 4,
+        title: "Орыс тілі",
+        price: 0,
+        isMyCourse: true,
+        image:
+            "https://firebasestorage.googleapis.com/v0/b/ozatonline/o/uploads%2Fimages%2Fcourses%2F12.jpg?alt=media",
+        description: "Орыс тілі грамматикасы мен сөйлеу дағдылары.",
+        content: [
+            {
+                id: 401,
+                title: "Грамматика",
+                lessons: [
+                    {
+                        id: 4011,
+                        title: "Септік жалғаулар",
+                        videoUrl: "https://example.com/russian1",
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        id: 5,
+        title: "Қазақ тілі",
+        price: 0,
+        isMyCourse: true,
+        image:
+            "https://firebasestorage.googleapis.com/v0/b/ozatonline/o/uploads%2Fimages%2Fcourses%2F12.jpg?alt=media",
+        description: "Қазақ тілін үйрену курсы.",
+        content: [
+            {
+                id: 501,
+                title: "Лексика",
+                lessons: [
+                    {
+                        id: 5011,
+                        title: "Сөз тіркестері",
+                        videoUrl: "https://example.com/kazakh1",
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        id: 6,
+        title: "Ағылшын тілі",
+        price: 0,
+        isMyCourse: false,
+        image:
+            "https://firebasestorage.googleapis.com/v0/b/ozatonline/o/uploads%2Fimages%2Fcourses%2F12.jpg?alt=media",
+        description: "Ағылшын тілін үйрену курсы: грамматика және сөйлеу.",
+        content: [
+            {
+                id: 601,
+                title: "Грамматика",
+                lessons: [
+                    {
+                        id: 6011,
+                        title: "Present Simple",
+                        videoUrl: "https://example.com/english1",
+                    },
+                ],
+            },
+        ],
+    },
+];
+
+export default courses;

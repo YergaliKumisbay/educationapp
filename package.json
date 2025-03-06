@@ -13,13 +13,16 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.4.6",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.6.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-input-mask": "^2.0.4",
-    "react-router-dom": "^7.1.5",
+    "react-router-dom": "^6.20.1",
     "react-scripts": "^5.0.1",
     "web-vitals": "^4.2.4"
   },

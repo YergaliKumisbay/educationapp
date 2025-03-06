@@ -13,7 +13,6 @@ const MyCourses = () => {
         setMyCourses(filteredCourses);
     }, []);
 
-    // При клике на курс переходим на маршрут /my-courses/:courseId
     const handleCourseClick = (id) => {
         navigate(`/my-courses/${id}`);
     };
