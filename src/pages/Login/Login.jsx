@@ -1,60 +1,57 @@
 import React, { useState } from "react";
 import InputMask from "react-input-mask";
-import Button from "../../components/UI/Button/Button";
-import RegisterModal from "../../components/UI/Modal/RegisterModal";
 import "./Login.css";
 
 const Login = ({ onLogin, onRegister }) => {
+    const [isLogin, setIsLogin] = useState(true);
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
-    const [isLoginMode, setIsLoginMode] = useState(true);
 
-    const handleLogin = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const formattedPhone = phone.replace(/\D/g, "");
-        console.log("Login attempt:", formattedPhone, password);
-        onLogin(formattedPhone, password);
+        const cleanPhone = phone.replace(/\D/g, "");
+        if (isLogin) onLogin(cleanPhone, password);
+        else onRegister({ phone: cleanPhone });
     };
 
     return (
-        <div className="login-container">
-            {isLoginMode ? (
-                <>
-                    <h2>Вход</h2>
-                    <form onSubmit={handleLogin}>
-                        <InputMask
-                            mask="+7(999)999-99-99"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            placeholder="+77001234567"
-                            required
-                            className="input"
-                        />
+        <div className="auth-container">
+            <img src="https://firebasestorage.googleapis.com/v0/b/ozatonline/o/uploads%2Fimages%2Flogos%2Fozat.online.svg?alt=media" alt="Logo" className="auth-logo" />
+
+            <div className="auth-toggle">
+                <button className={!isLogin ? "" : "active"} onClick={() => setIsLogin(true)}>
+                    Жүйеге кіру
+                </button>
+                <button className={isLogin ? "" : "active"} onClick={() => setIsLogin(false)}>
+                    Тіркелу
+                </button>
+            </div>
+
+            <form className="auth-form" onSubmit={handleSubmit}>
+                <label>Телефон</label>
+                <InputMask
+                    mask="+7 (999) 999-99-99"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    required
+                />
+                {isLogin && (
+                    <>
+                        <label>Құпия сөз</label>
                         <input
                             type="password"
-                            placeholder="Пароль"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className="input"
                         />
-                        <Button
-                            text="Войти"
-                            type="submit" // Только type="submit"
-                        />
-                    </form>
-                    <Button
-                        text="Нет аккаунта? Регистрация"
-                        onClick={() => setIsLoginMode(false)}
-                    />
-                </>
-            ) : (
-                <RegisterModal
-                    isOpen={true}
-                    onClose={() => setIsLoginMode(true)}
-                    onRegister={onRegister}
-                />
-            )}
+                        <div className="forgot">Құпия сөзді ұмыттым?</div>
+                    </>
+                )}
+
+                <button type="submit" className="auth-submit">
+                    {isLogin ? "Кіру" : "Жалғастыру"}
+                </button>
+            </form>
         </div>
     );
 };

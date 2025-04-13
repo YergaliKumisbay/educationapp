@@ -53,7 +53,8 @@ const Header = () => {
                 </Link>
             </nav>
 
-            <div className="profile-section" ref={headerToolsRef}>
+            <div className="profile-section" ref={headerToolsRef} onClick={() => setMenuOpen(prev => !prev)}
+            >
                 <img
                     src={user?.avatar || "https://daryn.online/_nuxt/user-default.Dmre8zgK.jpg"}
                     alt="Аватар"
