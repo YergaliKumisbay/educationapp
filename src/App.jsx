@@ -1,4 +1,3 @@
-// App.jsx
 import React, { useState, useEffect } from "react";
 import {
     BrowserRouter as Router,
@@ -14,15 +13,15 @@ import Home from "./pages/Home/Home";
 import MyCourses from "./pages/Courses/MyCourses";
 import AllCourses from "./pages/Courses/AllCourses";
 import MyCourseDetail from "./pages/Courses/MyCourseDetail";
+import TopicDetail from "./pages/Courses/TopicDetail";
 import Profile from "./pages/Profile/Profile";
 import { mockUsers } from "./data/users";
 
-// Внутренний компонент, в который передаём navigate
-const AppContentInner = ({ navigate }) => {
+const AppContent = () => {
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
+    const navigate = useNavigate();
 
-    // Инициализация данных
     useEffect(() => {
         const storedUsers = localStorage.getItem("users");
         const storedCurrentUser = localStorage.getItem("currentUser");
@@ -40,31 +39,22 @@ const AppContentInner = ({ navigate }) => {
         }
     }, []);
 
-    // Автонавигация
-    useEffect(() => {
-        if (!currentUser) {
-            navigate("/login", { replace: true });
-        } else {
-            navigate("/", { replace: true });
-        }
-    }, [currentUser]);
-
-    // Вход
     const handleLogin = (phone, password) => {
-        const foundUser = users.find(
-            (u) => u.phone === phone && u.password === password
+        const foundUser = users.find(u =>
+            u.phone === phone &&
+            u.password === password
         );
 
         if (foundUser) {
             setCurrentUser(foundUser);
             localStorage.setItem("currentUser", JSON.stringify(foundUser));
+            navigate("/", { replace: true });
         } else {
             alert("Неверный телефон или пароль!");
             navigate("/login", { replace: true });
         }
     };
 
-    // Регистрация
     const handleRegister = (newUser) => {
         const updatedUsers = [...users, newUser];
         setUsers(updatedUsers);
@@ -82,12 +72,16 @@ const AppContentInner = ({ navigate }) => {
                     currentUser ? (
                         <Navigate to="/" replace />
                     ) : (
-                        <Login onLogin={handleLogin} onRegister={handleRegister} />
+                        <Login
+                            onLogin={handleLogin}
+                            onRegister={handleRegister}
+                        />
                     )
                 }
             />
+
             <Route
-                path="/"
+                path="/*"
                 element={
                     currentUser ? (
                         <Layout currentUser={currentUser} />
@@ -99,21 +93,12 @@ const AppContentInner = ({ navigate }) => {
                 <Route index element={<Home />} />
                 <Route path="my-courses" element={<MyCourses />} />
                 <Route path="my-courses/:courseId" element={<MyCourseDetail />} />
+                <Route path="my-courses/:courseId/topics/:topicId" element={<TopicDetail />} />
                 <Route path="all-courses" element={<AllCourses />} />
                 <Route path="profile" element={<Profile />} />
             </Route>
-            <Route
-                path="*"
-                element={<Navigate to={currentUser ? "/" : "/login"} replace />}
-            />
         </Routes>
     );
-};
-
-// Получаем navigate здесь корректно
-const AppContent = () => {
-    const navigate = useNavigate();
-    return <AppContentInner navigate={navigate} />;
 };
 
 const App = () => {
