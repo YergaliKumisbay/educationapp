@@ -44,14 +44,16 @@ const Header = () => {
                 />
             </Link>
 
+{/*
             <nav className="header-nav">
                 <Link to="/my-courses" className="nav-item">
-                    Мои курсы
+                    Менің курстарым
                 </Link>
                 <Link to="/all-courses" className="nav-item">
-                    Все курсы
+                    Барлық курстар
                 </Link>
             </nav>
+*/}
 
             <div className="profile-section" ref={headerToolsRef} onClick={() => setMenuOpen(prev => !prev)}
             >
@@ -68,7 +70,7 @@ const Header = () => {
                             Профиль
                         </Link>
                         <button className="menu-item" onClick={handleLogout}>
-                            Выход
+                            Шығу
                         </button>
                     </div>
                 )}

@@ -48,25 +48,25 @@ const Body = () => {
             </div>
             {/* Сетка карточек */}
             <div className="card-grid">
-                <div className="course-card-button" onClick={() => navigate("/trial-tests")}>
+                <div className="course-card-button card-trial" onClick={() => navigate("/trial-tests")}>
                     <img src="https://firebasestorage.googleapis.com/v0/b/ozatonline/o/uploads%2Fimages%2Flogos%2Fozat.online.svg?alt=media" alt="Байқау тесттері" />
                     <h3>Байқау тесттері</h3>
                     <p>Тестілеуге дайындық</p>
                 </div>
 
-                <div className="course-card-button" onClick={() => navigate("/my-courses")}>
+                <div className="course-card-button card-my" onClick={() => navigate("/my-courses")}>
                     <img src="https://firebasestorage.googleapis.com/v0/b/ozatonline/o/uploads%2Fimages%2Flogos%2Fozat.online.svg?alt=media" alt="Менің курстарым" />
                     <h3>Менің курстарым</h3>
                     <p>Сіздің курстарыңыз</p>
                 </div>
 
-                <div className="course-card-button card-locked">
+                <div className="course-card-button card-locked card-locked-1">
                     <img src="https://firebasestorage.googleapis.com/v0/b/ozatonline/o/uploads%2Fimages%2Flogos%2Fozat.online.svg?alt=media" alt="Ата-ана үшін" />
                     <h3>Ата-ана үшін</h3>
                     <p>Ата-аналарға арналған</p>
                 </div>
 
-                <div className="course-card-button card-locked">
+                <div className="course-card-button card-locked card-locked-2">
                     <img src="https://firebasestorage.googleapis.com/v0/b/ozatonline/o/uploads%2Fimages%2Flogos%2Fozat.online.svg?alt=media" alt="Түсу ықтималдығы" />
                     <h3>Түсу ықтималдығы</h3>
                     <p>Сіздің мүмкіндік</p>

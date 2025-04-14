@@ -73,6 +73,35 @@
     justify-content: center;
 }
 
+.card-trial {
+    background: linear-gradient(135deg, #5b3ede, #7d5bff);
+    color: white;
+}
+
+.card-my {
+    background: linear-gradient(135deg, #20c997, #38e7b7);
+    color: white;
+}
+
+.card-locked-1 {
+    background: linear-gradient(135deg, #adb5bd, #ced4da);
+    color: white;
+}
+
+.card-locked-2 {
+    background: linear-gradient(135deg, #ffa94d, #ffc078);
+    color: white;
+}
+
+.course-card-button img {
+    filter: brightness(0) invert(1);
+}
+
+.course-card-button h3,
+.course-card-button p {
+    color: white !important;
+}
+
 .course-card-button {
     width: 220px;
     height: 220px;

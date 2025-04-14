@@ -1,25 +1,116 @@
 .profile-container {
     max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
     border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .profile-header {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
     text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+}
+
+.profile-content {
+    padding: 1rem;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #34495e;
+}
+
+.form-group input {
+    padding: 0.8rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.edit-btn {
+    background: #3498db;
+    color: white;
+    margin-top: 1.5rem;
+}
+
+.edit-btn:hover {
+    background: #2980b9;
+}
+
+.save-btn {
+    background: #2ecc71;
+    color: white;
+}
+
+.save-btn:hover {
+    background: #27ae60;
+}
+
+.cancel-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background: #c0392b;
+}
+
+.error {
+    border-color: #e74c3c !important;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .profile-field {
-    margin-bottom: 15px;
-    font-size: 16px;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.profile-field span {
+    color: #7f8c8d;
+}
+
+.profile-field strong {
+    color: #2c3e50;
 }

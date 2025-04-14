@@ -3,10 +3,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #f8fafd; /* Светлый фон */
-    border-bottom: 1px solid #ddd;
+    padding: 12px 24px;
+    background-color: #5b3ede; /* Фиолетовый фон как у карточки */
     font-family: Arial, sans-serif;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 /* Логотип */
@@ -28,7 +28,7 @@
 }
 
 .nav-item {
-    color: #000000;
+    color: white;
     text-decoration: none;
     font-size: 16px;
     font-weight: 500;
@@ -36,46 +36,46 @@
 }
 
 .nav-item:hover {
-    color: #1a3d7c;
-}
-
-/* Инструменты пользователя */
-.header-tools {
-    position: relative; /* Нужно для абсолютного позиционирования меню */
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer; /* Указатель при наведении */
-    user-select: none; /* Не выделять текст при клике */
+    color: #dcdcff;
 }
 
 /* Профиль пользователя */
-.profile-dropdown {
+.profile-section {
     display: flex;
     align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
 }
 
 .profile-image {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #ddd; /* Серый фон, если нет изображения */
     object-fit: cover;
+    border: 2px solid white;
+    background-color: #ddd;
+}
+
+.user-name {
+    color: white;
+    font-weight: bold;
 }
 
 /* Выпадающее меню */
 .profile-menu {
     position: absolute;
-    top: 60px; /* Отступ от хедера */
+    top: 60px;
     right: 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     border-radius: 6px;
     width: 160px;
     display: flex;
     flex-direction: column;
-    z-index: 999; /* Чтобы меню было поверх всего */
+    z-index: 999;
 }
 
 .menu-item {
@@ -84,33 +84,18 @@
     color: #333;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    background-color: transparent;
+    text-align: left;
+    border: none;
 }
 
 .menu-item:hover {
-    background-color: #f2f2f2;
-}
-
-.logout {
-    cursor: pointer;
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.role-badge {
-    background: #4caf50;
-    color: white;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 0.8em;
+    background-color: #f4f6fa;
 }
 
 /* Адаптивность */
 @media (max-width: 768px) {
     .header-nav {
-        display: none; /* Скрываем навигацию на маленьких экранах при необходимости */
+        display: none;
     }
 }
