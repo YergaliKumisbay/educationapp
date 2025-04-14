@@ -44,7 +44,7 @@ const Header = () => {
                 />
             </Link>
 
-{/*
+
             <nav className="header-nav">
                 <Link to="/my-courses" className="nav-item">
                     Менің курстарым
@@ -53,7 +53,7 @@ const Header = () => {
                     Барлық курстар
                 </Link>
             </nav>
-*/}
+
 
             <div className="profile-section" ref={headerToolsRef} onClick={() => setMenuOpen(prev => !prev)}
             >

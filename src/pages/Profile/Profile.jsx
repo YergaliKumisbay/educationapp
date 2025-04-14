@@ -1,98 +1,68 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import InputMask from "react-input-mask";
+import Button from "../../components/UI/Button/Button";
 import "./Profile.css";
 
 const Profile = () => {
-    const [user, setUser] = useState(null);
     const [editMode, setEditMode] = useState(false);
+    const [user, setUser] = useState(null);
     const [formData, setFormData] = useState({
-        id: "",
         firstName: "",
         lastName: "",
         phone: "",
         password: ""
     });
-    const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        const loadUserData = () => {
-            const storedUser = localStorage.getItem("currentUser");
-            if (storedUser) {
-                try {
-                    const parsedUser = JSON.parse(storedUser);
-                    setUser(parsedUser);
-                    setFormData({
-                        id: parsedUser.id,
-                        firstName: parsedUser.firstName,
-                        lastName: parsedUser.lastName,
-                        phone: parsedUser.phone,
-                        password: parsedUser.password
-                    });
-                } catch (error) {
-                    console.error("Ошибка загрузки данных:", error);
-                }
-            }
-        };
-        loadUserData();
+        const storedUser = localStorage.getItem("currentUser");
+        if (storedUser) {
+            const parsed = JSON.parse(storedUser);
+            setUser(parsed);
+            setFormData({
+                firstName: parsed.firstName,
+                lastName: parsed.lastName,
+                phone: parsed.phone,
+                password: parsed.password
+            });
+        }
     }, []);
 
-    const validateForm = () => {
-        const newErrors = {};
-        if (!formData.firstName.trim()) {
-            newErrors.firstName = "Имя обязательно";
-        }
-        if (!formData.lastName.trim()) {
-            newErrors.lastName = "Фамилия обязательна";
-        }
-        if (!formData.phone.replace(/\D/g, "").match(/^77\d{9}$/)) {
-            newErrors.phone = "Некорректный номер телефона";
-        }
-        if (!formData.password || formData.password.length < 6) {
-            newErrors.password = "Пароль должен быть не менее 6 символов";
-        }
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
     const handleSave = () => {
-        if (!validateForm()) return;
+        if (formData.password.length < 6) {
+            alert("Пароль должен быть не менее 6 символов");
+            return;
+        }
 
-        const updatedUser = {
+        const updated = {
             ...user,
             ...formData,
             phone: formData.phone.replace(/\D/g, "")
         };
 
-        // Обновляем текущего пользователя
-        localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+        localStorage.setItem("currentUser", JSON.stringify(updated));
 
-        // Обновляем данные в списке пользователей
-        const allUsers = JSON.parse(localStorage.getItem("users") || []);
-        const updatedUsers = allUsers.map(u =>
-            u.id === updatedUser.id ? updatedUser : u
+        const allUsers = JSON.parse(localStorage.getItem("users")) || [];
+        const updatedUsers = allUsers.map((u) =>
+            u.id === updated.id ? updated : u
         );
         localStorage.setItem("users", JSON.stringify(updatedUsers));
 
-        setUser(updatedUser);
+        setUser(updated);
         setEditMode(false);
-        alert("Данные успешно сохранены!");
+        alert("Данные сохранены");
     };
 
     const handleCancel = () => {
         setFormData({
-            id: user.id,
             firstName: user.firstName,
             lastName: user.lastName,
             phone: user.phone,
             password: user.password
         });
         setEditMode(false);
-        setErrors({});
     };
 
-    if (!user) {
-        return <div className="profile-container">Загрузка профиля...</div>;
-    }
+    if (!user) return <div className="profile-container">Загрузка...</div>;
 
     return (
         <div className="profile-container">
@@ -100,58 +70,51 @@ const Profile = () => {
 
             <div className="profile-content">
                 {editMode ? (
-                    <div className="edit-form">
+                    <>
                         <div className="form-group">
                             <label>Имя:</label>
                             <input
                                 value={formData.firstName}
-                                onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-                                className={errors.firstName ? "error" : ""}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, firstName: e.target.value })
+                                }
                             />
-                            {errors.firstName && <span className="error-message">{errors.firstName}</span>}
                         </div>
-
                         <div className="form-group">
                             <label>Фамилия:</label>
                             <input
                                 value={formData.lastName}
-                                onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-                                className={errors.lastName ? "error" : ""}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, lastName: e.target.value })
+                                }
                             />
-                            {errors.lastName && <span className="error-message">{errors.lastName}</span>}
                         </div>
-
                         <div className="form-group">
                             <label>Телефон:</label>
                             <InputMask
                                 mask="+7(999)999-99-99"
                                 value={formData.phone}
-                                onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                                className={errors.phone ? "error" : ""}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, phone: e.target.value })
+                                }
                             />
-                            {errors.phone && <span className="error-message">{errors.phone}</span>}
                         </div>
-
                         <div className="form-group">
                             <label>Пароль:</label>
                             <input
                                 type="password"
                                 value={formData.password}
-                                onChange={(e) => setFormData({...formData, password: e.target.value})}
-                                className={errors.password ? "error" : ""}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, password: e.target.value })
+                                }
                             />
-                            {errors.password && <span className="error-message">{errors.password}</span>}
                         </div>
 
                         <div className="form-actions">
-                            <button className="save-btn" onClick={handleSave}>
-                                Сохранить
-                            </button>
-                            <button className="cancel-btn" onClick={handleCancel}>
-                                Отмена
-                            </button>
+                            <Button text="Сохранить" onClick={handleSave} />
+                            <Button text="Отмена" onClick={handleCancel} />
                         </div>
-                    </div>
+                    </>
                 ) : (
                     <div className="profile-info">
                         <div className="profile-field">
@@ -166,12 +129,7 @@ const Profile = () => {
                             <span>Телефон:</span>
                             <strong>+{user.phone}</strong>
                         </div>
-                        <button
-                            className="edit-btn"
-                            onClick={() => setEditMode(true)}
-                        >
-                            Редактировать
-                        </button>
+                        <Button text="Редактировать" onClick={() => setEditMode(true)} />
                     </div>
                 )}
             </div>
